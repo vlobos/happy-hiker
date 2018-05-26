@@ -1,11 +1,17 @@
 import React from 'react';
-import Trails from './Trails.jsx';
+import Trail from './Trail.jsx';
 
 class Trailslist extends React.Component{
+  constructor(props){
+    super(props);
+  }
   render(){
     return (
       <div>
-          this is Trailslist
+          This is the Trail List!
+          {this.props.trails.map((trail, index)=> {
+            return <div> <Trail trail={trail}/> </div>
+          })}
       </div>
     )
   }

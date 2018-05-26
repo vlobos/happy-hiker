@@ -10,24 +10,35 @@ class App extends React.Component {
     this.state = {
       trails: []
     }
+    this.populateTrails = this.populateTrails.bind(this);
   };
 //initiate get request to server
   //set state to be the returned data
+
+populateTrails(trails) {
+  var trailsArray = trails.data;
+  this.setState({
+    trails: trailsArray
+  })
+  console.log(this.state.trails, 'Did my state update?')
+}
+
 select(lat, lon){
   console.log("Initial Get request to server");
   axios.get('/trails', {
       params: {
         lat: lat, 
         lon: lon
-      }}).then((trails) => {
-    console.log('Got back from Server. Here are trails: ', trails);
-    this.setState({
-      trails: trails
-    })
-    console.log('here is my data!',this.state.trails)
-  }).catch((error)=> {
-    console.log(error);
-  })
+      }})
+      .then((trails)=> {
+        console.log('Got back from Server. Here are trails: ', trails.data);
+        this.populateTrails(trails);
+      })
+      .then(() => {
+        console.log('Just in the then after then trails')
+      })
+      .catch((error) => {console.log(error);
+      })
 };
 
 // trails={this.state.trails}
@@ -35,7 +46,7 @@ select(lat, lon){
   render() {
     return (
       <div> List of Trails
-        <Areas onSelect={this.select}/>
+        <Areas onSelect={this.select.bind(this)}/>
         <Trailslist trails={this.state.trails}/>
       </div>
     )
