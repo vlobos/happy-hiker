@@ -5,6 +5,7 @@ class Trail extends React.Component {
   constructor(props){
     super(props);
   }
+
   render(){
     return (
       <div className="trail-entry">
@@ -18,8 +19,8 @@ class Trail extends React.Component {
           DIFFICULTY: {this.props.trail.difficulty} <br/>
           STARS: {this.props.trail.stars} <br/>
         </div>
-        <div className="reviews">
-          REVIEWS
+        <div className="reviews" id={this.props.trail.id} >
+          <button onClick={()=> this.props.toggleReviewComp(this)} >Reviews</button>
         </div>
         <br/>
       </div>
@@ -28,3 +29,6 @@ class Trail extends React.Component {
 }
 
 export default Trail;
+
+//export to src/com/trailslist
+{/* <div className="reviews" id={this.props.trail.id} onClick={() => this.props.getReviews(this.props.trail.id)}> */}

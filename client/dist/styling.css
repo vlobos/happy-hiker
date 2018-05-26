@@ -1,0 +1,18 @@
+body {
+  background-color: beige
+}
+
+h3 {
+  text-align: center;
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 48pt;
+  color: darkolivegreen
+}
+
+#traillist, #reviewcomponent {
+  width: 300px;
+  background: tan;
+  border: 1px solid green;
+  margin-right: 40px;
+  float: left;
+}
